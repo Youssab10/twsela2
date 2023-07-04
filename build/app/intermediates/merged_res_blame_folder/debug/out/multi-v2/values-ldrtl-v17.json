@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.twsela.app-mergeDebugResources-43:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Youssab\\.gradle\\caches\\transforms-3\\853dd147bfba1e7f07036676024f7a09\\transformed\\jetified-kommunicateui-2.7.3\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "52",
+                        "endOffsets": "103"
+                    },
+                    "to": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "332",
+                        "endColumns": "52",
+                        "endOffsets": "380"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Youssab\\.gradle\\caches\\transforms-3\\d0c37b2f53ceb0e07d07eb0a81fbb875\\transformed\\material-1.3.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,191",
+                        "endColumns": "135,140",
+                        "endOffsets": "186,327"
+                    }
+                }
+            ]
+        }
+    ]
+}

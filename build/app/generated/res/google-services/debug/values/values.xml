@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">816667771058-07chl65fcb48bm6cln63haslfeumfpf2.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">816667771058</string>
+    <string name="google_api_key" translatable="false">AIzaSyB2foNSzAbd9ETp8RB458ltFRNo_ey9yrc</string>
+    <string name="google_app_id" translatable="false">1:816667771058:android:7457338e13fae8020149ab</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB2foNSzAbd9ETp8RB458ltFRNo_ey9yrc</string>
+    <string name="google_storage_bucket" translatable="false">el-quraan-al-kareem.appspot.com</string>
+    <string name="project_id" translatable="false">el-quraan-al-kareem</string>
+</resources>

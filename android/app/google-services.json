@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "816667771058",
+    "project_id": "el-quraan-al-kareem",
+    "storage_bucket": "el-quraan-al-kareem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816667771058:android:7457338e13fae8020149ab",
+        "android_client_info": {
+          "package_name": "com.example.twsela"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816667771058-07chl65fcb48bm6cln63haslfeumfpf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2foNSzAbd9ETp8RB458ltFRNo_ey9yrc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816667771058-07chl65fcb48bm6cln63haslfeumfpf2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
