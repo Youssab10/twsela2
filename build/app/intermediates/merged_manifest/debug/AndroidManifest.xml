@@ -93,7 +93,7 @@
             android:value="2" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBDmzg95dD-os5FPd2CKliHIouhqnPf6NY" />
+            android:value="AIzaSyCc-oBxZ6p7IsdS_qdKfMXbjF5dClj3WL0" />
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"

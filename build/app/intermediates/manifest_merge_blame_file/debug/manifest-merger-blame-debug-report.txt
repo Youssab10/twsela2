@@ -141,7 +141,7 @@
 93            android:value="2" />
 94        <meta-data
 95            android:name="com.google.android.geo.API_KEY"
-96            android:value="AIzaSyBDmzg95dD-os5FPd2CKliHIouhqnPf6NY" />
+96            android:value="AIzaSyCc-oBxZ6p7IsdS_qdKfMXbjF5dClj3WL0" />
 97
 98        <service
 98-->[:cloud_firestore] C:\Users\Youssab\Downloads\fayoume\twsela\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19

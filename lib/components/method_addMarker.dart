@@ -5,14 +5,14 @@ import '../../modules/passenger_pages/map_screen.dart';
 
 addMarker(String id, LatLng location) async {
   //var markerImage = (await BitmapDescriptor.fromAssetImage(
-    //  const ImageConfiguration(), 'assets/images/person.jpg'));
+  //  const ImageConfiguration(), 'assets/images/person.jpg'));
   //var url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQInz-6l1XE1IP1MaoPCgS6ZBBLVeyMMgfxnlygg4eoEg&s';
   // var bytes =  (await NetworkAssetBundle(Uri.parse(url)).load(url)).buffer.asUint8List();
   var marker = Marker(
     markerId: MarkerId(id),
     position: location,
 
- //   icon: markerImage,
+    //   icon: markerImage,
   );
   MapScreen.markers[id] = marker;
   DriverMapScreen.driverMarkers[id] = marker;
