@@ -1,5 +1,3 @@
-
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +10,7 @@ import 'package:twsela/components/custom_button.dart';
 import 'package:twsela/components/default_app_bar.dart';
 import 'package:twsela/layout/cubit/app_cubit.dart';
 import 'package:twsela/layout/cubit/shop_states.dart';
+import 'package:twsela/shared/network/local/cache_helper.dart';
 import '../../components/user_info_item.dart';
 import '../../models/trip_model.dart';
 import '../driver_modules/new_trip.dart';
@@ -21,66 +20,67 @@ class MyTripsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        AppCubit.get(context).getMyTrips();
-        return BlocConsumer<AppCubit, AppStates>(
-          listener: (context, state){},
-          builder: (context, state){
-            AppCubit cubit= AppCubit.get(context);
-            return Scaffold(
-              appBar: DefaultAppBar(
-                title: 'My Trips',
-
-                leadingFunction: (){},
-              ),
-
-              body: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                child: ConditionalBuilder(
-                  condition: cubit.myTrips.isNotEmpty,
-                  builder:(context)=> ListView.separated(
-                    itemBuilder: (context, index)=>MyTripsCart(index: index, trip: cubit.myTrips[index]),
-                    separatorBuilder: (context, index)=>SizedBox(height: 20.h,),
-                    itemCount: cubit.myTrips.length,
+    return Builder(builder: (context) {
+      AppCubit.get(context).getMyTrips();
+      return BlocConsumer<AppCubit, AppStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          AppCubit cubit = AppCubit.get(context);
+          return Scaffold(
+            appBar: DefaultAppBar(
+              title: 'My Trips',
+              leadingFunction: () {},
+            ),
+            body: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+              child: ConditionalBuilder(
+                condition: cubit.myTrips.isNotEmpty,
+                builder: (context) => ListView.separated(
+                  itemBuilder: (context, index) =>
+                      MyTripsCart(index: index, trip: cubit.myTrips[index]),
+                  separatorBuilder: (context, index) => SizedBox(
+                    height: 20.h,
                   ),
-                  fallback: (context)=> Center(
-                    child: Text(
-                      'There are no trips yet',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.roboto(
-                        color: secondaryColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24.sp,
-                      ),
+                  itemCount: cubit.myTrips.length,
+                ),
+                fallback: (context) => Center(
+                  child: Text(
+                    'There are no trips yet',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.roboto(
+                      color: secondaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24.sp,
                     ),
                   ),
                 ),
               ),
-            );
-          },
-        );
-      }
-    );
+            ),
+          );
+        },
+      );
+    });
   }
-
 }
 
-
-
 class MyTripsCart extends StatelessWidget {
-  MyTripsCart({Key? key, required this.index, required this.trip}) : super(key: key);
+  MyTripsCart({Key? key, required this.index, required this.trip})
+      : super(key: key);
   int index;
   TripModel trip;
 
-  Color getColor(){
-    if(index%2==0) return Color(0xff14A38B);
-    else return Color(0xffFF9494);
+  Color getColor() {
+    if (index % 2 == 0)
+      return Color(0xff14A38B);
+    else
+      return Color(0xffFF9494);
   }
 
-  String getTitle(){
-    if(index%2==0) return 'Done';
-    else return 'Canceled';
+  String getTitle() {
+    if (index % 2 == 0)
+      return 'Done';
+    else
+      return 'Canceled';
   }
 
   @override
@@ -114,31 +114,37 @@ class MyTripsCart extends StatelessWidget {
                         style: GoogleFonts.roboto(
                             fontWeight: FontWeight.w400,
                             fontSize: 9.sp,
-                            color: Colors.white
-                        ),
+                            color: Colors.white),
                       ),
-                      const SizedBox(width: 4,),
-                      Icon(Icons.timelapse, color: Colors.white, size: 12.sp,),
+                      const SizedBox(
+                        width: 4,
+                      ),
+                      Icon(
+                        Icons.timelapse,
+                        color: Colors.white,
+                        size: 12.sp,
+                      ),
                     ],
                   ),
                 ),
                 CustomButton(
                     text: 'Cancel',
-                    height:23.h,
+                    height: 23.h,
                     width: 80.w,
                     radius: 6,
                     fontSize: 14,
                     color: Colors.redAccent,
-                    function: trip.isApplied==true ? () {} : (){
-                      AppCubit.get(context).cancelMyTrip(trip);
-                    }
-                ),
+                    function: trip.isApplied == true
+                        ? () {}
+                        : () {
+                            AppCubit.get(context).cancelMyTrip(trip);
+                          }),
               ],
             ),
           ),
-
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0, bottom: 24.0),
+            padding: const EdgeInsets.only(
+                left: 10.0, right: 10.0, top: 10.0, bottom: 24.0),
             child: Column(
               children: [
                 Row(
@@ -148,9 +154,19 @@ class MyTripsCart extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         UserInfoItem(title: 'Driver', body: trip.driverName!),
-                        SizedBox(height: 10.h,),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        UserInfoItem(
+                            title: 'Phone Number',
+                            body: CacheHelper.getData(key: 'phone')!),
+                        SizedBox(
+                          height: 10.h,
+                        ),
                         UserInfoItem(title: 'Time', body: trip.time!),
-                        SizedBox(height: 10.h,),
+                        SizedBox(
+                          height: 10.h,
+                        ),
                         UserInfoItem(title: 'Date', body: trip.date!),
                       ],
                     ),
@@ -158,7 +174,9 @@ class MyTripsCart extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         UserInfoItem(title: 'Trip Code', body: trip.tripCode!),
-                        SizedBox(height: 10.h,),
+                        SizedBox(
+                          height: 10.h,
+                        ),
                         RatingBar.builder(
                           initialRating: 3,
                           itemSize: 20.sp,
@@ -166,16 +184,22 @@ class MyTripsCart extends StatelessWidget {
                           direction: Axis.horizontal,
                           allowHalfRating: true,
                           itemCount: 5,
-                          itemBuilder: (context, _) =>const Icon(Icons.star, color: Colors.amber, size: 10,),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                            size: 10,
+                          ),
                           onRatingUpdate: (rating) {
                             print(rating);
                           },
                         ),
-                        SizedBox(height: 10.h,),
+                        SizedBox(
+                          height: 10.h,
+                        ),
                         Text(
                           '${trip.price}\$',
                           style: TextStyle(
-                            color:Colors.lightBlue,
+                            color: Colors.lightBlue,
                             fontSize: 22.sp,
                             fontWeight: FontWeight.bold,
                           ),
@@ -184,7 +208,9 @@ class MyTripsCart extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 16.h,),
+                SizedBox(
+                  height: 16.h,
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                   child: Column(
@@ -192,21 +218,28 @@ class MyTripsCart extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(Icons.location_on_sharp, color: Colors.brown,),
+                          Icon(
+                            Icons.location_on_sharp,
+                            color: Colors.brown,
+                          ),
                           Text(
                             'TO',
                             style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12.sp,
-                                color: Colors.black
-                            ),
+                                color: Colors.black),
                           ),
-                          Icon(Icons.location_on_sharp, color: Colors.green,),
+                          Icon(
+                            Icons.location_on_sharp,
+                            color: Colors.green,
+                          ),
                         ],
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-                        child: Divider(color: Colors.grey,),
+                        child: Divider(
+                          color: Colors.grey,
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -216,17 +249,14 @@ class MyTripsCart extends StatelessWidget {
                             style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.sp,
-                                color: Colors.black
-                            ),
+                                color: Colors.black),
                           ),
-
                           Text(
                             trip.to!,
                             style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.sp,
-                                color: Colors.black
-                            ),
+                                color: Colors.black),
                           ),
                         ],
                       ),
@@ -241,7 +271,3 @@ class MyTripsCart extends StatelessWidget {
     );
   }
 }
-
-
-
-
